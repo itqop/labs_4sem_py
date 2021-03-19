@@ -1,4 +1,3 @@
-
 X1 = [
     [0, 0, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 0, 0],
@@ -18,66 +17,72 @@ W = [[1, 0, 0, 0, 0, 0, 0, 0],
      [0, 1, 0, 0, 0, 0, 0, 0],
      [0, 0, 0, 1, 0, 0, 0, 0]]
 
+
 def Valid(matrix):
     n = len(matrix)
     T = False
-    #Check rows
+    # Check rows
     for i in matrix:
-        if sum(i) >1:break
+        if sum(i) > 1: break
     else:
         T = True
     if not T:
         return T
     else:
         T = False
-    #Check cols
+    # Check cols
     for i in range(n):
-        if sum(matrix[j][i] for j in range(n))>1:break
+        if sum(matrix[j][i] for j in range(n)) > 1: break
     else:
         T = True
     if not T:
         return T
     else:
         T = False
-    #Check first diagonal
-    for j in range(n-2,0,-1):
-        if sum(matrix[i][i-j] for i in range(j,n))>1:break
+    # Check first diagonal
+    for j in range(n - 2, 0, -1):
+        if sum(matrix[i][i - j] for i in range(j, n)) > 1: break
     else:
         T = True
     if not T:
         return T
     else:
         T = False
-    for j in range(n-1):
-        if sum(matrix[i-j][i] for i in range(j,n))>1:break
+    for j in range(n - 1):
+        if sum(matrix[i - j][i] for i in range(j, n)) > 1: break
     else:
         T = True
     if not T:
         return T
     else:
         T = False
-    #Check second diagonal
-    for j in range(2,n):
-        if sum(matrix[i][j-1-i] for i in range(j))>1:break
+    # Check second diagonal
+    for j in range(2, n):
+        if sum(matrix[i][j - 1 - i] for i in range(j)) > 1: break
     else:
         T = True
     if not T:
         return T
     else:
         T = False
-    for j in range(0,n-1):
-        if sum(matrix[i][j-1-i] for i in range(j,n))>1:break
+    for j in range(0, n - 1):
+        if sum(matrix[i][j - 1 - i] for i in range(j, n)) > 1: break
     else:
         T = True
     return T
+
+
 def Print(matrix):
     for i in matrix:
         print(i)
     print("-------------------------------------------------")
+
+
 def Right(x):
     i = x.index(1)
-    x[i], x[i+1] = x[i+1], x[i]
+    x[i], x[i + 1] = x[i + 1], x[i]
     return x
+
 
 def BruteForce(matrix):
     n = len(matrix)
@@ -97,11 +102,11 @@ def BruteForce(matrix):
                             for part7 in range(n):
                                 u7 = matrix[7].copy()
                                 if Valid(matrix): Print(matrix)
-                                #print(matrix, o)
+                                # print(matrix, o)
                                 for part8 in range(n - 1):
                                     matrix[7] = Right(matrix[7])
                                     if Valid(matrix): Print(matrix)
-                                    #print(matrix, o)
+                                    # print(matrix, o)
                                 matrix[7] = u7
                                 if part7 != n - 1:
                                     matrix[6] = Right(matrix[6])
@@ -121,10 +126,11 @@ def BruteForce(matrix):
             if part2 != n - 1:
                 matrix[1] = Right(matrix[1])
         matrix[1] = u1
-        if part1 != n-1:
+        if part1 != n - 1:
             matrix[0] = Right(matrix[0])
 
-#print(Valid(W))
+
+# print(Valid(W))
 X = [
     [1, 0, 0, 0, 0, 0, 0, 0],
     [1, 0, 0, 0, 0, 0, 0, 0],
