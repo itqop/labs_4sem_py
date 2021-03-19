@@ -1,13 +1,4 @@
-X = [
-    [1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0]
-]
+
 X1 = [
     [0, 0, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 1, 0, 0],
@@ -79,16 +70,16 @@ def Valid(matrix):
     else:
         T = True
     return T
-
+def Print(matrix):
+    for i in matrix:
+        print(i)
+    print("-------------------------------------------------")
 def Right(x):
     i = x.index(1)
     x[i], x[i+1] = x[i+1], x[i]
     return x
 
-W2= [[1, 0],
-     [1, 0]]
-
-def Broot(matrix):
+def BruteForce(matrix):
     n = len(matrix)
     o = 1
     for part1 in range(n):
@@ -105,11 +96,11 @@ def Broot(matrix):
                             u6 = matrix[6].copy()
                             for part7 in range(n):
                                 u7 = matrix[7].copy()
-                                if Valid(matrix): print(matrix)
+                                if Valid(matrix): Print(matrix)
                                 #print(matrix, o)
                                 for part8 in range(n - 1):
                                     matrix[7] = Right(matrix[7])
-                                    if Valid(matrix): print(matrix)
+                                    if Valid(matrix): Print(matrix)
                                     #print(matrix, o)
                                 matrix[7] = u7
                                 if part7 != n - 1:
@@ -134,4 +125,14 @@ def Broot(matrix):
             matrix[0] = Right(matrix[0])
 
 #print(Valid(W))
-#Broot(X)
+X = [
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0]
+]
+BruteForce(X)
