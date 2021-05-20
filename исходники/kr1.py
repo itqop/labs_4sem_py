@@ -1,12 +1,11 @@
 """             ZADANIE 1               """
 
-
 def n1():
     A = list(map(int, input().split(" ")))
     A.sort(reverse=True)
     for i in range(len(A) - 2):
         if A[i] < A[i + 1] + A[i + 2]:
-            print(sum(A[i], A[i + 1], A[i + 2]))
+            print(A[i]+ A[i + 1]+ A[i + 2])
             break
     else:
         print(-1)
@@ -52,25 +51,49 @@ def n3():
               [23, 55, 17, 45, 15, 52],
               [75, 31, 36, 44, 58, 8],
               [22, 27, 33, 25, 68, 4],
+              [84, 28, 14, 11, 5, 50]
               ]
-    matrix = [[3, 3, 1, 1],
+
+    m2 = [[3, 3, 1, 1],
               [2, 2, 1, 2],
               [1, 1, 1, 2]]
 
     n = len(matrix1)
     m = len(matrix1[0])
-    matrix_s = []
-
-    for j in range(n - 1, 0, -1):
-        matrix_s.append(sorted(list(matrix1[i][i - j] for i in range(j, n))))
-    for j in range(m //2):
-        matrix_s.append(sorted(list(matrix1[i][i+j] for i in range(n))))
-    for j in range(0, n - 1):
-        matrix_s.append(sorted(list(matrix1[i-m//2-j][i] for i in range(m//2+j, m))))
-
-
-
-    print(matrix_s)
+    matrix = []
+    for i in range(n):
+        for j in range(m):
+            matrix.append(matrix1[i][j])
+    o = m+n-3
+    for i in range(m-1):
+        temp = []
+        col = i+2 if i+2 <= n else n
+        f = m - 2 - i
+        temp_f = f
+        for j in range(col):
+            temp.append(matrix[f])
+            f += o
+        temp.sort()
+        f = temp_f
+        for j in range(col):
+            matrix[f] = temp[j]
+    for i in range(1,n-1):
+        temp = []
+        col = n-1-i
+        f = m * i
+        temp_f = f
+        for j in range(col):
+            temp.append(matrix[f])
+            f += o
+        temp.sort()
+        f = temp_f
+        for j in range(col):
+            matrix[f] = temp[j]
+            f += o
+    for i in range(n * m):
+        if i % m == 0:
+            print('\n')
+        print(matrix[i], end=' ')
 
 
 """             START                   """
